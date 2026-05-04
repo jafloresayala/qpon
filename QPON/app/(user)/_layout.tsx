@@ -16,6 +16,7 @@ export default function UserTabsLayout() {
         name="scan"
         options={{
           title: "Escanear",
+          href: "/(user)/scan",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="qr-code-outline" size={size} color={color} />
           ),
@@ -25,6 +26,7 @@ export default function UserTabsLayout() {
         name="inventory"
         options={{
           title: "Inventario",
+          href: "/(user)/inventory",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="grid-outline" size={size} color={color} />
           ),
@@ -34,6 +36,7 @@ export default function UserTabsLayout() {
         name="profile"
         options={{
           title: "Perfil",
+          href: "/(user)/profile",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person-outline" size={size} color={color} />
           ),

@@ -20,7 +20,7 @@ function RootNavigator() {
   const inAuth = segments[0] === "(auth)";
 
   if (!user && !inAuth) {
-    return <Redirect href="/(auth)/login" />;
+    return <Redirect href="/" />;
   }
   if (user && inAuth) {
     return (

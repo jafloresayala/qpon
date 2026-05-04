@@ -16,6 +16,7 @@ export default function CompanyTabsLayout() {
         name="dashboard"
         options={{
           title: "Dashboard",
+          href: "/(company)/dashboard",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="bar-chart-outline" size={size} color={color} />
           ),
@@ -25,6 +26,7 @@ export default function CompanyTabsLayout() {
         name="create-campaign"
         options={{
           title: "Nuevo QR",
+          href: "/(company)/create-campaign",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="add-circle-outline" size={size} color={color} />
           ),
@@ -34,6 +36,7 @@ export default function CompanyTabsLayout() {
         name="subscriptions"
         options={{
           title: "Planes",
+          href: "/(company)/subscriptions",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="card-outline" size={size} color={color} />
           ),
@@ -43,6 +46,7 @@ export default function CompanyTabsLayout() {
         name="profile"
         options={{
           title: "Perfil",
+          href: "/(company)/profile",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person-outline" size={size} color={color} />
           ),

@@ -13,8 +13,8 @@ import type { User } from "@/api/types";
 interface AuthState {
   user: User | null;
   loading: boolean;
-  login: (payload: LoginPayload) => Promise<void>;
-  register: (payload: RegisterPayload) => Promise<void>;
+  login: (payload: LoginPayload) => Promise<User>;
+  register: (payload: RegisterPayload) => Promise<User>;
   logout: () => Promise<void>;
 }
 
@@ -43,11 +43,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const login = useCallback(async (payload: LoginPayload) => {
     const response = await apiLogin(payload);
     setUser(response.user);
+    return response.user;
   }, []);
 
   const register = useCallback(async (payload: RegisterPayload) => {
     const response = await apiRegister(payload);
     setUser(response.user);
+    return response.user;
   }, []);
 
   const logout = useCallback(async () => {

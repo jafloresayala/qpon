@@ -10,12 +10,13 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useAuth } from "@/hooks/useAuth";
 import { Colors, Spacing } from "@/constants/theme";
 
 export default function LoginScreen() {
   const { login } = useAuth();
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -29,7 +30,10 @@ export default function LoginScreen() {
     }
     setLoading(true);
     try {
-      await login({ email: email.trim().toLowerCase(), password });
+      const signedUser = await login({ email: email.trim().toLowerCase(), password });
+      router.replace(
+        signedUser.role === "company" ? "/(company)/dashboard" : "/(user)/scan"
+      );
     } catch (err) {
       setErrorMsg(err instanceof Error ? err.message : "Error desconocido");
     } finally {

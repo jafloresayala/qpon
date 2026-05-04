@@ -10,14 +10,16 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useAuth } from "@/hooks/useAuth";
 import { Colors, Spacing } from "@/constants/theme";
+import { showAlert } from "@/utils/alert";
 
 type Role = "user" | "company";
 
 export default function RegisterScreen() {
   const { register } = useAuth();
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,13 +40,17 @@ export default function RegisterScreen() {
     }
     setLoading(true);
     try {
-      await register({
+      const createdUser = await register({
         name: name.trim(),
         email: email.trim().toLowerCase(),
         password,
         role,
         ...(role === "company" ? { company_name: companyName.trim() } : {}),
       });
+      showAlert("Registro exitoso", "Tu cuenta fue creada correctamente.");
+      router.replace(
+        createdUser.role === "company" ? "/(company)/dashboard" : "/(user)/scan"
+      );
     } catch (err) {
       setErrorMsg(err instanceof Error ? err.message : "Error desconocido");
     } finally {
