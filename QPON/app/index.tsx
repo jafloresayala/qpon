@@ -1,10 +1,8 @@
+// The root navigator in _layout.tsx handles all auth-based redirects.
+// This page just provides the entry-point redirect to avoid a blank screen
+// on static hosting (e.g. Render, Vercel) while the JS bundle loads.
 import { Redirect } from "expo-router";
-import { useAuth } from "@/hooks/useAuth";
 
 export default function Index() {
-  const { user, loading } = useAuth();
-  if (loading) return null;
-  if (!user) return <Redirect href="/(auth)/login" />;
-  if (user.role === "company") return <Redirect href="/(company)/dashboard" />;
-  return <Redirect href="/(user)/scan" />;
+  return <Redirect href="/(auth)/login" />;
 }
